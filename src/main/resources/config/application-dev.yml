@@ -119,7 +119,8 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: my-secret-token-to-change-in-production
+#                secret: my-secret-token-to-change-in-production
+                secret: XK=e&f=D6cptWC$Mb-U#eNWj3Ts-XFE-sgJnKwzbs5rZyyQ+ZrMkzRwgX?GAyR&N@&Zn$Tc&$HAt9kDGB^8LEL-W%M5%q9DPXRUu5BP*AuKVbeKWHN^vSh@xP+7Ck**zc7Z?&4k8mc?=Xg3FGFV!6h!!fKj@e&R$&zLPUsLu334=bn+F#H3!zs^MJ$PjmG$-re-JQc2@uB?@zT7e$$wJU^7=y$^fmdU%Ac32Yv-fj?DCrup&95Q+yTM?fank&hTj
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000

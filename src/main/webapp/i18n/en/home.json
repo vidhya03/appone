@@ -1,9 +1,10 @@
 {
     "home": {
-        "title": "Welcome, Java Hipster!",
+        "title": "Welcome to AppOne!",
         "subtitle": "This is your homepage",
         "logged": {
-            "message": "You are logged in as user \"{{username}}\"."
+            "message": "You are logged in as user \"{{username}}\".",
+            "appswitch": "Choose your app to login"
         },
         "question": "If you have any question on JHipster:",
         "link": {

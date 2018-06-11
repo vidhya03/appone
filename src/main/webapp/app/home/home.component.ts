@@ -15,6 +15,7 @@ import { Account, LoginModalService, Principal } from '../shared';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
+    jwt: string;
 
     constructor(
         private principal: Principal,
@@ -39,8 +40,18 @@ export class HomeComponent implements OnInit {
     }
 
     isAuthenticated() {
+
+        if (this.account.login === 'user') {
+            // tslint:disable-next-line:max-line-length
+            this.jwt = 'http://localhost:9090/#/token?accesstoken=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTU2MDI0MDYzMH0.GcXvLxWDv1sXYn3_vVZKc0iKdNT0d9WOEqO7VZgbOcpyjq52WIbMhWHTfZuqaV8gM8KqUrDOjgreclmV1VX5iQ';
+        } else if (this.account.login === 'admin') {
+            // tslint:disable-next-line:max-line-length
+            this.jwt = 'http://localhost:9090/#/token?accesstoken=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTU2MDI0MDYzMH0.lgwsG2OFYarsCVQ0thjpe_M-BUp6qlw_gwiIGA1FoDwassDtdNIFgwHIy8E63TZoLPdHKLGvyJXZaZyXP8IZww';
+        }
         return this.principal.isAuthenticated();
     }
+
+
 
     login() {
         this.modalRef = this.loginModalService.open();

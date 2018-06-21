@@ -1,6 +1,10 @@
 package com.sag.cloud.appswitch.config;
 
+import io.github.jhipster.config.JHipsterDefaults;
+import io.github.jhipster.config.JHipsterProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Properties specific to App One.
@@ -11,4 +15,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class ApplicationProperties {
 
+    private final AppTwo appTwo = new AppTwo();
+
+    public static class AppTwo {
+
+        private final JHipsterProperties.Security security = new JHipsterProperties.Security();
+
+        public JHipsterProperties.Security getSecurity() {
+            return security;
+        }
+    }
+
+    public AppTwo getAppTwo() {
+        return appTwo;
+    }
 }

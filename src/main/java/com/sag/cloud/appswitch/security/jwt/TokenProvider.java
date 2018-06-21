@@ -1,5 +1,6 @@
 package com.sag.cloud.appswitch.security.jwt;
 
+import com.sag.cloud.appswitch.web.rest.vm.UserInfo;
 import io.github.jhipster.config.JHipsterProperties;
 
 import java.util.*;
@@ -64,6 +65,40 @@ public class TokenProvider {
             .setSubject(authentication.getName())
             .claim(AUTHORITIES_KEY, authorities)
             .signWith(SignatureAlgorithm.HS512, secretKey)
+            .setExpiration(validity)
+            .compact();
+    }
+
+    public String createTokenService(UserInfo userInfo, boolean rememberMe) {
+//        String authorities = userInfo.getAuthorities().stream()
+//            .map(GrantedAuthority::getAuthority)
+//            .collect(Collectors.joining(","));
+
+        String authorities = "";
+
+
+        //At present hardcoded
+        switch (userInfo.getUsername()) {
+            case "admin":
+                authorities = "ROLE_ADMIN,ROLE_USER";
+                break;
+            case "user":
+                authorities = "ROLE_USER";
+                break;
+        }
+
+        long now = (new Date()).getTime();
+        Date validity;
+        if (rememberMe) {
+            validity = new Date(now + this.tokenValidityInMillisecondsForRememberMe);
+        } else {
+            validity = new Date(now + this.tokenValidityInMilliseconds);
+        }
+
+        return Jwts.builder()
+            .setSubject(userInfo.getUsername())
+            .claim(AUTHORITIES_KEY, authorities)
+            .signWith(SignatureAlgorithm.HS512, "my-secret-token-to-change-in-production")
             .setExpiration(validity)
             .compact();
     }

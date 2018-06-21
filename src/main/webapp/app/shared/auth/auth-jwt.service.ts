@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
-import { SERVER_API_URL } from '../../app.constants';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import {SERVER_API_URL} from '../../app.constants';
 
 @Injectable()
 export class AuthServerProvider {
-    constructor(
-        private http: HttpClient,
-        private $localStorage: LocalStorageService,
-        private $sessionStorage: SessionStorageService
-    ) {}
+    constructor(private http: HttpClient,
+                private $localStorage: LocalStorageService,
+                private $sessionStorage: SessionStorageService) {
+    }
 
     getToken() {
 
@@ -24,7 +23,26 @@ export class AuthServerProvider {
             password: credentials.password,
             rememberMe: credentials.rememberMe
         };
-        return this.http.post(SERVER_API_URL + 'api/authenticate', data, {observe : 'response'}).map(authenticateSuccess.bind(this));
+        return this.http.post(SERVER_API_URL + 'api/authenticate', data, {observe: 'response'}).map(authenticateSuccess.bind(this));
+
+        function authenticateSuccess(resp) {
+            const bearerToken = resp.headers.get('Authorization');
+            if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
+                const jwt = bearerToken.slice(7, bearerToken.length);
+                this.storeAuthenticationToken(jwt, credentials.rememberMe);
+                return jwt;
+            }
+        }
+    }
+
+    generateToken(credentials): Observable<any> {
+
+        const data = {
+            username: credentials.username,
+            password: credentials.password,
+            rememberMe: credentials.rememberMe
+        };
+        return this.http.post(SERVER_API_URL + 'api/generate', data, {observe: 'response'}).map(authenticateSuccess.bind(this));
 
         function authenticateSuccess(resp) {
             const bearerToken = resp.headers.get('Authorization');

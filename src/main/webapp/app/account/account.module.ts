@@ -16,6 +16,7 @@ import {
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
     SettingsComponent,
+    TokenComponent,
     accountState
 } from './';
 
@@ -31,7 +32,8 @@ import {
         PasswordStrengthBarComponent,
         PasswordResetInitComponent,
         PasswordResetFinishComponent,
-        SettingsComponent
+        SettingsComponent,
+        TokenComponent
     ],
     providers: [
         Register,

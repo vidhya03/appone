@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewChecked, ViewEncapsulation } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -10,7 +10,8 @@ import { Account, LoginModalService, Principal, LoginService } from '../shared';
     templateUrl: './home.component.html',
     styleUrls: [
         'home.scss'
-    ]
+    ],
+    encapsulation: ViewEncapsulation.None
 
 })
 export class HomeComponent implements OnInit, AfterViewChecked {

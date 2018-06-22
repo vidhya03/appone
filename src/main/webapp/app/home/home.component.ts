@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewChecked } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -13,7 +13,7 @@ import { Account, LoginModalService, Principal, LoginService } from '../shared';
     ]
 
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewChecked {
     account: Account;
     modalRef: NgbModalRef;
     jwt: string;
@@ -38,17 +38,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.registerAuthenticationSuccess();
     }
 
-    ngAfterViewInit() {
-        //
-        // if (this.account !== undefined) {
-        //     if (this.account.login === 'user') {
-        // tslint:disable-next-line:max-line-length
-        //         this.jwt = hostPort + '/#/token?accesstoken=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTUyODc5NTQ5Mn0.7OBX0PgbErBcF8rV3MJXDuiVe712XJVcI1O1q4eE7T_dgUTP4Bw66NnTPzZGFkYybYz1ezEm2mUDyVojcdfJiA';
-        //     } else if (this.account.login === 'admin') {
-        // tslint:disable-next-line:max-line-length
-        //         this.jwt = hostPort + '/#/token?accesstoken=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyODc5NTM5MH0.ENN7EP-q9h6r-YcsaTep1x0pvpwf-xuJALO4ME0GqwIWd3pKC7y8sgmyme_00KIAqQOaJWvJAwTHvHFV6ALgNA';
-        //     }
-        // }
+    ngAfterViewChecked() {
         this.updateJwt();
     }
 

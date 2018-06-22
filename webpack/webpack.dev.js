@@ -109,7 +109,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         ]),
         new WebpackNotifierPlugin({
             title: 'JHipster',
-            contentImage: path.join(__dirname, 'logo-appone.png')
+            contentImage: path.join(__dirname, 'apigateway-logo.1.png')
         })
     ]
 });

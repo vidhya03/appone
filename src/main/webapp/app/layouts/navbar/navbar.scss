@@ -6,9 +6,9 @@ Navbar
     font-size: 10px;
     color: #ccc
 }
-
+$common-color:#0899cc;
 .jh-navbar {
-    background-color: #6ea7ec;
+    background-color: $common-color;
     padding: .2em 1em;
     .profile-image {
         margin: -10px 0px;
@@ -17,7 +17,7 @@ Navbar
         border-radius: 50%;
     }
     .dropdown-item.active, .dropdown-item.active:focus, .dropdown-item.active:hover {
-        background-color: #338cf8;
+        background-color: $common-color
     }
     .dropdown-toggle::after {
         margin-left: 0.15em;
@@ -69,7 +69,7 @@ Logo styles
             width: 70px;
             display: inline-block;
             vertical-align: middle;
-            background: url("../../../content/images/logo-appone.png") no-repeat center center;
+            background: url("../../../content/images/apigateway-logo.1.png") no-repeat center center;
             background-size: contain;
         }
     }
